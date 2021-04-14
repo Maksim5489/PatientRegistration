@@ -1,0 +1,60 @@
+﻿@model WebApplication1.Models.ZayavkiModels
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "CreateDoctors";
+}
+
+<h2>Записаться к врачу</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>ZayavkiModels</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    <label for="inputDate">Введите дату:</label>
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.Date, new
+        {
+            @class = "form-control",
+            type = "datetime-local",
+        })
+    </div>
+
+    <label for="inputDate">Введите ФИО:</label>
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.FIO, new
+        {
+            @class = "form-control",
+        })
+    </div>
+    
+<div class="form-group">
+    <label for="inputDate">Выберите доктора:</label>
+    @Html.DropDownListFor(model => model.Doctor, ViewData["Listtest"] as List<SelectListItem>, new { @class = "form-control" })
+</div>
+        
+    </div>
+    <div class="form-group">
+        <label for="inputDate">Аккаунт:</label>
+        @{
+            List<SelectListItem> listItems3 = new List<SelectListItem>();
+            listItems3.Add(new SelectListItem
+            {
+                Text = User.Identity.GetUserName(),
+                Value = User.Identity.GetUserName()
+            });
+        }
+
+        @Html.DropDownListFor(model => model.EmailZ, listItems3)
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+    }
+

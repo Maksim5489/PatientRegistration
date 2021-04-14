@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebApplication1.Models.PatientModels>
+
+@{
+    ViewBag.Title = "Регистратура";
+}
+
+<h2>Регистратура</h2>
+
+@if (Request.IsAuthenticated && User.IsInRole("User"))
+{
+    <p>
+        <input type="button" value="Добавить свои данные" onclick="location.href='@Url.Action("Create", "Patient")'" />
+    </p>
+}
+@if (Request.IsAuthenticated && User.IsInRole("Patient"))
+{
+    <p>
+        <input type="button" value="Мед карта" onclick="location.href='@Url.Action("Detali", "Patient")'" />
+        <input type="button" value="Изменить свои данные" onclick="location.href='@Url.Action("Edit", "Patient")'" />
+        <input type="button" value="Записаться к врачу" onclick="location.href='@Url.Action("CreateDoctors", "Zayavki")'" />
+    </p>
+}
+
+

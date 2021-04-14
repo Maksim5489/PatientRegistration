@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebApplication1.Models.PatientModels>
+
+@{
+    ViewBag.Title = "Detali";
+}
+
+<h2>Информация о пациенте:</h2>
+
+<div>
+    <h4>PatientModels</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(Model => item.Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FIO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.FIO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date_of_Birth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Date_of_Birth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Policy_number)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Policy_number)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PassportID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.PassportID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Job)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Job)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Disability)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Disability)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Chronic_diseases)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Chronic_diseases)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Email)
+            </dd>
+
+        </dl>
+    }
+</div>

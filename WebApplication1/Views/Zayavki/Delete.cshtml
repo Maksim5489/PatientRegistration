@@ -1,0 +1,88 @@
+﻿@model WebApplication1.Models.ZayavkiModels
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление.</h2>
+
+<h3>Вы действительно хотите удалить это?</h3>
+<div>
+    <h4>ZayavkiModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocFIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocFIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recept)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Policy_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Policy_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailZ)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

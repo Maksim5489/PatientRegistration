@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApplication1.Models.ZayavkiModels>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ваши заявки:</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocFIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Policy_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recept)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disease)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Qualification)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DocFIO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Policy_number)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FIO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Recept)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Disease)
+    </td>
+
+    @if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+    {
+        <td>
+            @using (Html.BeginForm("Edit", "Zayavki", new { id = item.Id }, FormMethod.Post))
+            {
+                <input type="submit" value="Выписать рецепт" />
+            }
+        </td>
+    }
+    <td>
+        @using (Html.BeginForm("Delete", "Zayavki", new { id = item.Id }, FormMethod.Post))
+        {
+            <input type="submit" value="Закрыть заявку" />
+        }
+    </td>
+</tr>
+    }
+
+</table>

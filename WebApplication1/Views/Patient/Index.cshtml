@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebApplication1.Models.PatientModels>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_of_Birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Policy_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassportID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Job)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chronic_diseases)
+        </th>
+        <th>
+            Status
+        </th>
+        <th class="no-sort">
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Gender)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FIO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date_of_Birth)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Policy_number)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PassportID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Job)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Disability)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Chronic_diseases)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @*@Html.ActionLink("Detali", "Detali", new { id = item.Id, item.Gender, item.FIO, item.Policy_number, item.PassportID, item.Job, item.Disability, item.Chronic_diseases, item.Status })})*@
+
+        @if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            using (Html.BeginForm("Check", "Patient", new { id = item.Id }, FormMethod.Post))
+            {
+                <input type="submit" value="Проверить" />
+            }
+        }
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+        }
+
+    </td>
+</tr>
+}
+</table>

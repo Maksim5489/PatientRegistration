@@ -1,0 +1,19 @@
+﻿@model WebApplication1.Models.DiseaseModels
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удалить?</h2>
+
+<h3>Вы действительно хотите удалить запись из истории заявок?</h3>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    }
+</div>

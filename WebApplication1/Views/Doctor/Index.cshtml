@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebApplication1.Models.DoctorModels>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+{
+    @Html.ActionLink("Добавить доктора", "Create")
+}
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Добавить доктора", "Create")
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Idr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocFIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cabinet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Work_experience)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocFIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cabinet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qualification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Work_experience)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { idr = item.Idr }) |
+                @Html.ActionLink("Delete", "Delete", new { idr = item.Idr })
+            </td>
+        </tr>
+    }
+
+</table>
