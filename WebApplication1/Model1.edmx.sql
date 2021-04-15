@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/30/2021 03:27:39
+-- Date Created: 04/14/2021 23:44:14
 -- Generated from EDMX file: C:\Users\Maksim\Desktop\Технологии программирования\КУРСАЧ\Новая папка (2)\WebApplication1\WebApplication1\Model1.edmx
 -- --------------------------------------------------
 
@@ -17,26 +17,23 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
-GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRoles]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRoles];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUsers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUsers];
 GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[C__MigrationHistory]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[C__MigrationHistory];
-GO
 IF OBJECT_ID(N'[dbo].[AspNetRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetRoles];
 GO
@@ -46,25 +43,31 @@ GO
 IF OBJECT_ID(N'[dbo].[AspNetUserLogins]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUserLogins];
 GO
+IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AspNetUserRoles];
+GO
 IF OBJECT_ID(N'[dbo].[AspNetUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUsers];
 GO
-IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AspNetUserRoles];
+IF OBJECT_ID(N'[dbo].[C__MigrationHistory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[C__MigrationHistory];
+GO
+IF OBJECT_ID(N'[dbo].[Disease]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Disease];
+GO
+IF OBJECT_ID(N'[dbo].[Doctors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Doctors];
+GO
+IF OBJECT_ID(N'[dbo].[Patient]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Patient];
+GO
+IF OBJECT_ID(N'[dbo].[Zayavki]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Zayavki];
 GO
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
-
--- Creating table 'C__MigrationHistory'
-CREATE TABLE [dbo].[C__MigrationHistory] (
-    [MigrationId] nvarchar(150)  NOT NULL,
-    [ContextKey] nvarchar(300)  NOT NULL,
-    [Model] varbinary(max)  NOT NULL,
-    [ProductVersion] nvarchar(32)  NOT NULL
-);
-GO
 
 -- Creating table 'AspNetRoles'
 CREATE TABLE [dbo].[AspNetRoles] (
@@ -103,7 +106,70 @@ CREATE TABLE [dbo].[AspNetUsers] (
     [LockoutEndDateUtc] datetime  NULL,
     [LockoutEnabled] bit  NOT NULL,
     [AccessFailedCount] int  NOT NULL,
-    [UserName] nvarchar(256)  NOT NULL
+    [UserName] nvarchar(256)  NOT NULL,
+    [Policy_number] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'C__MigrationHistory'
+CREATE TABLE [dbo].[C__MigrationHistory] (
+    [MigrationId] nvarchar(150)  NOT NULL,
+    [ContextKey] nvarchar(300)  NOT NULL,
+    [Model] varbinary(max)  NOT NULL,
+    [ProductVersion] nvarchar(32)  NOT NULL
+);
+GO
+
+-- Creating table 'Disease'
+CREATE TABLE [dbo].[Disease] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Date] datetime  NULL,
+    [Doctor] nvarchar(max)  NULL,
+    [Recept] nvarchar(max)  NULL,
+    [FIOp] nvarchar(max)  NULL,
+    [EmailZ] nvarchar(max)  NULL,
+    [Disease1] nvarchar(max)  NULL,
+    [EmailQ] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'Doctors'
+CREATE TABLE [dbo].[Doctors] (
+    [Idr] nvarchar(128)  NOT NULL,
+    [DocFIO] nvarchar(max)  NULL,
+    [Cabinet] nvarchar(max)  NULL,
+    [Qualification] nvarchar(max)  NULL,
+    [Work_experience] nvarchar(max)  NULL,
+    [EmailD] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'Patient'
+CREATE TABLE [dbo].[Patient] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Gender] nvarchar(max)  NULL,
+    [FIO] nvarchar(max)  NULL,
+    [Date_of_Birth] datetime  NULL,
+    [Policy_number] nvarchar(max)  NULL,
+    [PassportID] nvarchar(max)  NULL,
+    [Job] nvarchar(max)  NULL,
+    [Disability] nvarchar(max)  NULL,
+    [Chronic_diseases] nvarchar(max)  NULL,
+    [Status] nvarchar(max)  NULL,
+    [Email] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'Zayavki'
+CREATE TABLE [dbo].[Zayavki] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Date] datetime  NULL,
+    [Doctor] nvarchar(max)  NULL,
+    [Recept] nvarchar(max)  NULL,
+    [FIOp] nvarchar(max)  NULL,
+    [EmailZ] nvarchar(max)  NULL,
+    [Disease] nvarchar(max)  NULL,
+    [EmailQ] nvarchar(max)  NULL
 );
 GO
 
@@ -117,12 +183,6 @@ GO
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
-
--- Creating primary key on [MigrationId], [ContextKey] in table 'C__MigrationHistory'
-ALTER TABLE [dbo].[C__MigrationHistory]
-ADD CONSTRAINT [PK_C__MigrationHistory]
-    PRIMARY KEY CLUSTERED ([MigrationId], [ContextKey] ASC);
-GO
 
 -- Creating primary key on [Id] in table 'AspNetRoles'
 ALTER TABLE [dbo].[AspNetRoles]
@@ -145,6 +205,36 @@ GO
 -- Creating primary key on [Id] in table 'AspNetUsers'
 ALTER TABLE [dbo].[AspNetUsers]
 ADD CONSTRAINT [PK_AspNetUsers]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [MigrationId], [ContextKey] in table 'C__MigrationHistory'
+ALTER TABLE [dbo].[C__MigrationHistory]
+ADD CONSTRAINT [PK_C__MigrationHistory]
+    PRIMARY KEY CLUSTERED ([MigrationId], [ContextKey] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Disease'
+ALTER TABLE [dbo].[Disease]
+ADD CONSTRAINT [PK_Disease]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Idr] in table 'Doctors'
+ALTER TABLE [dbo].[Doctors]
+ADD CONSTRAINT [PK_Doctors]
+    PRIMARY KEY CLUSTERED ([Idr] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Patient'
+ALTER TABLE [dbo].[Patient]
+ADD CONSTRAINT [PK_Patient]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Zayavki'
+ALTER TABLE [dbo].[Zayavki]
+ADD CONSTRAINT [PK_Zayavki]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
